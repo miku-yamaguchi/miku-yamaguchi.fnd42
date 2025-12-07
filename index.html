@@ -1,44 +1,79 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="theme-color" content="#000000">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<header>
+		<h1>⚫オセロ対決⚪</h1>
+	</header>
+
+<div id="board">
+ <table id="table">
+	<tbody>
+			<tr>
+				<td class="wall" data-row="rowTop" data-col="leftTop"></td>
+				<td class="wall" data-row="rowTop" data-col="rowTop"></td>
+				<td class="wall" data-row="rowTop" data-col="rowTop"></td>
+				<td class="wall" data-row="rowTop" data-col="rowTop"></td>
+				<td class="wall" data-row="rowTop" data-col="rowTop"></td>
+				<td class="wall" data-row="rowTop" data-col="rightTop"></td>
+			</tr>		
+			<tr>
+				<td class="wall" data-row="leftTop" data-col="leftTop"></td>
+				<td class="grid" data-row="0" data-col="0"></td>
+				<td class="grid" data-row="0" data-col="1"></td>
+				<td class="grid" data-row="0" data-col="2"></td>
+				<td class="grid" data-row="0" data-col="3"></td>
+				<td class="wall" data-row="rightTop" data-col="rightTop"></td>
+			</tr>
+			<tr>
+				<td class="wall" data-row="leftTop" data-col="leftTop"></td>
+				<td class="grid" data-row="1" data-col="0"></td>
+				<td class="white" data-row="1" data-col="1">⚪</td>
+				<td class="black" data-row="1" data-col="2">⚫</td>
+				<td class="grid" data-row="1" data-col="3"></td>
+				<td class="wall" data-row="rightTop" data-col="rightTop"></td>
+			</tr>
+			<tr>
+				<td class="wall" data-row="leftTop" data-col="leftTop"></td>
+				<td class="grid" data-row="2" data-col="0"></td>
+				<td class="black" data-row="2" data-col="1">⚫</td>
+				<td class="white" data-row="2" data-col="2">⚪</td>
+				<td class="grid" data-row="2" data-col="3"></td>
+				<td class="wall" data-row="rightTop" data-col="rightTop"></td>
+			</tr>
+			<tr>
+				<td class="wall" data-row="leftTop" data-col="leftTop"></td>
+				<td class="grid" data-row="3" data-col="0"></td>
+				<td class="grid" data-row="3" data-col="1"></td>
+				<td class="grid" data-row="3" data-col="2"></td>
+				<td class="grid" data-row="3" data-col="3"></td>
+				<td class="wall" data-row="rightTop" data-col="rightTop"></td>
+			</tr>
+			<tr>
+				<td class="wall" data-row="rowBottom" data-col="leftTop"></td>
+				<td class="wall" data-row="rowBottom" data-col="rowTop"></td>
+				<td class="wall" data-row="rowBottom" data-col="rowTop"></td>
+				<td class="wall" data-row="rowBottom" data-col="rowTop"></td>
+				<td class="wall" data-row="rowBottom" data-col="rowTop"></td>
+				<td class="wall" data-row="rowBottom" data-col="rightTop"></td>
+			</tr>				
+		</tbody>
+	</table>
+</div>
+
+<footer>
+	<h1 id="flag" class="player">黒の番です⚫</h1>
+	<p><input type="button" value="パス" id="button"></p>
+</footer>
+
   <script type="text/javascript" src="script.js"></script>
-</head>
-
-<body>
-  <h1>DIG プログラミング基礎へようこそ！</h1>
-  <h2>Mac をお使いの方は、 <font color="blue"> Cmd + Option + J</font><br>
-    Windows/Linux をお使いの方は、 <font color="blue"> Control+Shift+J</font> <br>
-    をクリックして、デベロッパーツールを開いてください。</h2>
-  <h2>下記にユニコーンの画像が表示されていれば成功です！</h2>
-  <img src="https://cdn.dribbble.com/users/1281272/screenshots/4515441/unicorn.gif">
-  <h3>30分悩んで進まなくなったら…helpチャンネルで質問してみましょう！</h3>
 </body>
 
-</html> -->
-
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>アリゲーター</title>
-  <link rel="stylesheet" href="gators.css" />
-</head>
-<body>
-  <div id="green">
-    <input type="text" id="text" />
-    <p><input type="button" value="ワニ放出！" id="button" /></p>
-    <p><input type="button" value="ワニを抹消！" id="deleteButton"/></p>
-    <!-- <p><input type="button" value="数値クリア" id="clear"/></p> -->
-  </div>
-
-  <div id="blue"></div>
-
-  <script src="gators.js"></script>
-  
-</body>
 </html>
