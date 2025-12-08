@@ -30,16 +30,9 @@ for (let i = 0; i < td.length; i++) {
     const grid = document.getElementsByClassName("grid");
     const player = flag.innerText;
 
-    if (this.className !== "grid") {
-      window.alert("そこのマスには置けません！😭");
-    }
-
     const reverseArr = putPiece(player, i);
 
-    if (!reverseArr[0]) {
-      window.alert("そこのマスには置けません！😭");
-    }
-
+    error(td[i].className, reverseArr);
   
     for (const reverse of reverseArr) {
 
@@ -364,3 +357,24 @@ reloadButton.addEventListener("click", function() {
 
 const resultButton = document.getElementById("resultButton");
 resultButton.addEventListener("click", gameEnd);
+
+
+/**
+ * @param {string} classname クリックしたコマのクラス名
+ * @param {array} reverseArr ひっくり返すコマを集めた配列  
+ * @returns {} エラーメッセージを1秒表示する 
+ */
+function error(classname, reverseArr) {
+
+  const error = document.getElementById("error");
+
+  if (classname !== "grid" || !reverseArr[0]) {
+    
+    error.style.visibility = "visible";
+
+    setTimeout(function() {
+      error.style.visibility = "hidden";
+    }, 1000);
+  }
+}  
+
