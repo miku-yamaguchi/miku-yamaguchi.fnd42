@@ -33,11 +33,12 @@ for (let i = 0; i < td.length; i++) {
     const reverseArr = putPiece(player, i);
 
     error(td[i].className, reverseArr);
+    console.log(reverseArr)
   
     for (const reverse of reverseArr) {
 
       if (reverse.className === "white") {
-
+        console.log(reverse.className)
         reverse.innerText = "⚫";
         reverse.className = "black";
         this.innerText = "⚫";
@@ -45,6 +46,7 @@ for (let i = 0; i < td.length; i++) {
         flag.innerText = whiteWord;
 
       } else {
+        console.log(reverse.className)
         reverse.innerText = "⚪";
         reverse.className = "white";
         this.innerText = "⚪";
@@ -82,12 +84,16 @@ function putPiece(player, cell) {
       if (td[j + 1].dataset.col === "rightTop" || td[j + 1].className === "grid") {
         break;
 
-      } else if (td[j + 1].className === "white") {
+      } else if (td[j + 1].className === "white" && td[j + 2].className === "black") {
+        reverseArr.push(td[j + 1]);
 
-        if (td[j + 2].className === "black") {
-          reverseArr.push(td[j + 1]);
+      } else if (td[j + 1].className === "white" && td[j + 2].className === "white" && td[j + 3].className === "black") {
+        reverseArr.push(td[j + 1], td[j + 2]);
 
-        } 
+
+      } else {
+        break;
+
       }
       
     } else if (player === whiteWord) {
@@ -95,12 +101,15 @@ function putPiece(player, cell) {
       if (td[j + 1].dataset.col === "rightTop" || td[j + 1].className === "grid") {
         break;
 
-      } else if (td[j + 1].className === "black") {
+      } else if (td[j + 1].className === "black" && td[j + 2].className === "white") {
+        reverseArr.push(td[j + 1]);
 
-        if (td[j + 2].className === "white") {
-          reverseArr.push(td[j + 1]);
+      } else if (td[j + 1].className === "black" && td[j + 2].className === "black" && td[j + 3].className === "white") {
+        reverseArr.push(td[j + 1], td[j + 2]);
+        
+      } else {
+        break;
 
-        } 
       }
     }
   }
@@ -113,12 +122,17 @@ function putPiece(player, cell) {
       if (td[k - 1].dataset.col === "leftTop" || td[k - 1].className === "grid") {
         break;
 
-      } else if (td[k - 1].className === "white") {
+      } else if (td[k - 1].className === "white" && td[k - 2].className === "black") {
+        reverseArr.push(td[k - 1]);
 
-        if (td[k - 2].className === "black") {
-          reverseArr.push(td[k - 1]);
+      } else if (td[k - 1].className === "white" && td[k - 2].className === "white" && td[k - 3].className === "black") {
+        reverseArr.push(td[k - 1], td[k - 2]);
 
-        }
+
+
+      } else {
+        break;
+
       }
   
     } else if (player === whiteWord) {
@@ -126,12 +140,15 @@ function putPiece(player, cell) {
       if (td[k - 1].dataset.row === "leftTop" || td[k - 1].className === "grid") {
         break;
 
-      } else if (td[k - 1].className === "black") {
+      } else if (td[k - 1].className === "black" && td[k - 2].className === "white") {
+        reverseArr.push(td[k - 1]);
 
-        if (td[k - 2].className === "white") {
-          reverseArr.push(td[k - 1]);
+      } else if (td[k - 1].className === "black" && td[k - 2].className === "black" && td[k - 3].className === "white") {
+        reverseArr.push(td[k - 1], td[k - 2]);
+        
+      } else {
+        break;
 
-        }
       }
     }
   }  
@@ -144,24 +161,31 @@ function putPiece(player, cell) {
       if (td[j - 6].dataset.row === "rowTop" || td[j - 6].className === "grid"){
         break;
 
-      } else if (td[j - 6].className === "white") {
-
-        if (td[j - 12].className === "black") {
+      } else if (td[j - 6].className === "white" && td[j - 12].className === "black") {
           reverseArr.push(td[j - 6]);
 
-        }
+      } else if (td[j - 6].className === "white" && td[j - 12].className === "white" && td[j - 18].className === "black") {
+          reverseArr.push(td[j - 6], td[j - 12]);
+
+
+      } else {
+        break;
+
       }
 
     } else if (player === whiteWord) {
       if (td[j - 6].dataset.row === "rowTop" || td[j - 6].className === "grid") {
         break;
 
-      } else if (td[j - 6].className === "black") {
-
-        if (td[j - 12].className === "white") {
+      } else if (td[j - 6].className === "black" && td[j - 12].className === "white") {
           reverseArr.push(td[j - 6]);
 
-        }      
+      } else if (td[j - 6].className === "black" && td[j - 12].className === "black" && td[j - 18].className === "white") {
+          reverseArr.push(td[j - 6], td[j - 12]);
+
+      } else {
+        break;
+
       }
     }
   }
@@ -175,24 +199,31 @@ function putPiece(player, cell) {
       if (td[k + 6].dataset.row === "rowBottom" || td[k + 6].className === "grid") {
         break;
 
-      } else if (td[k + 6].className === "white") {
+      } else if (td[k + 6].className === "white" && td[k + 12].className === "black") {
+        reverseArr.push(td[k + 6]);
 
-        if (td[k + 12].className === "black") {
-          reverseArr.push(td[k + 6]);
+      } else if (td[k + 6].className === "white" && td[k + 12].className === "white" && td[k + 18].className === "black") {
+        reverseArr.push(td[k + 6], td[k + 12]);
 
-        }
+
+      } else {
+        break;
+
       }
 
     } else if (player === whiteWord) {
       if (td[k + 6].dataset.row === "rowBottom" || td[k + 6].className === "grid") {
         break;
 
-      } else if (td[k + 6].className === "black") {
+      } else if (td[k + 6].className === "black" && td[k + 12].className === "white") {
+        reverseArr.push(td[k + 6]);
 
-        if (td[k + 12].className === "white") {
-          reverseArr.push(td[k + 6]);
+      } else if (td[k + 6].className === "black" && td[k + 12].className === "black" && td[k + 18].className === "white") {
+        reverseArr.push(td[k + 6], td[k + 12]);
 
-        }      
+      } else {
+        break;
+
       }
     }
   }
@@ -205,24 +236,30 @@ function putPiece(player, cell) {
       if (td[j - 7].dataset.row === "rowTop" || td[j - 7].dataset.col === "leftTop" || td[j - 7].className === "grid") {
         break;
 
-      } else if (td[j - 7].className === "white") {
+      } else if (td[j - 7].className === "white" && td[j - 14].className === "black") {
+        reverseArr.push(td[j - 7]);
 
-        if (td[j - 14].className === "black") {
-          reverseArr.push(td[j - 7]);
+      } else if (td[j - 7].className === "white" && td[j - 14].className === "white" && td[j - 21].className === "black") {
+        reverseArr.push(td[j - 7], td[j - 14]);
 
-        }
+      } else {
+        break;
+
       }
 
     } else if (player === whiteWord) {
       if (td[j - 7].dataset.row === "rowTop" || td[j - 7].dataset.col === "leftTop" || td[j - 7].className === "grid") {
         break;
 
-      } else if (td[j - 7].className === "black") {
+      } else if (td[j - 7].className === "black" && td[j - 14].className === "white") {
+        reverseArr.push(td[j - 7]);
 
-        if (td[j - 14].className === "white") {
-          reverseArr.push(td[j - 7]);
+      } else if (td[j - 7].className === "black" && td[j - 14].className === "black" && td[j - 21].className === "white") {
+        reverseArr.push(td[j - 7], td[j - 14]);
 
-        }      
+      } else {
+        break;
+
       }
     }   
   }
@@ -235,24 +272,30 @@ function putPiece(player, cell) {
       if (td[k - 5].dataset.row === "rowTop" || td[k- 5].dataset.col === "rightTop" || td[k - 5].className === "grid") {
         break;
 
-      } else if (td[k - 5].className === "white") {
+      } else if (td[k - 5].className === "white" && td[k - 10].className === "black") {
+        reverseArr.push(td[k - 5]);
 
-        if (td[k - 10].className === "black") {
-          reverseArr.push(td[k - 5]);
+      } else if (td[k - 5].className === "white" && td[k - 10].className === "white" && td[k - 15].className === "black") {
+        reverseArr.push(td[k - 5], td[k - 10]);
 
-        }
+      } else {
+        break;
+
       }
 
     } else if (player === whiteWord) {
       if (td[k - 5].dataset.row === "rowTop" || td[k - 5].dataset.col === "rightTop" || td[k - 5].className === "grid") {
         break;
 
-      } else if (td[k - 5].className === "black") {
+      } else if (td[k - 5].className === "black" && td[k - 10].className === "white") {
+        reverseArr.push(td[k - 5]);
 
-        if (td[k - 10].className === "white") {
-          reverseArr.push(td[k - 5]);
+      } else if (td[k - 5].className === "black" && td[k - 10].className === "black" && td[k - 15].className === "white") {
+        reverseArr.push(td[k - 5], td[k - 10]);
 
-        }      
+      } else {
+        break;
+
       }
     }
   }
@@ -265,26 +308,32 @@ function putPiece(player, cell) {
       if (td[j + 5].dataset.row === "rowBottom" || td[j + 5].dataset.col === "leftTop" || td[j + 5].className === "grid") {
         break;
 
-      } else if (td[j+ 5].className === "white") {
+      } else if (td[j + 5].className === "white" && td[j + 10].className === "black") {
+        reverseArr.push(td[j + 5]);
 
-        if (td[j + 10].className === "black") {
-          reverseArr.push(td[j + 5]);
+      } else if (td[j + 5].className === "white" && td[j + 10].className === "white" && td[j + 15].className === "black") {
+        reverseArr.push(td[j + 5], td[j + 10]);
 
-        }
+      } else {
+        break;
+
       }
 
     } else if (player === whiteWord) {
       if (td[j + 5].dataset.row === "rowBottom" || td[j + 5].dataset.col === "leftTop" || td[j + 5].className === "grid") {
         break;
 
-      } else if (td[j + 5].className === "black") {
+     } else if (td[j + 5].className === "black" && td[j + 10].className === "white") {
+        reverseArr.push(td[j + 5]);
 
-        if (td[j + 10].className === "white") {
-          reverseArr.push(td[j + 5]);
-    
-        }      
-      }
-    }
+     } else if (td[j + 5].className === "black" && td[j + 10].className === "black" && td[j + 15].className === "white") {
+        reverseArr.push(td[j + 5], td[j + 10]);
+
+     } else {
+      break;
+
+     } 
+   }
   }
 
     // 右下方向の確認
@@ -295,24 +344,30 @@ function putPiece(player, cell) {
       if (td[k + 7].dataset.row === "rowBottom" || td[k + 7].dataset.col === "rightTop" || td[k + 7].className === "grid") {
         break;
 
-      } else if (td[k + 7].className === "white") {
+      } else if (td[k + 7].className === "white" && td[k + 14].className === "black") {
+        reverseArr.push(td[k + 7]);
 
-        if (td[k + 14].className === "black") {
-          reverseArr.push(td[k + 7]);
+      } else if (td[k + 7].className === "white" && td[k + 14].className === "white" && td[k + 21].className === "black") {
+        reverseArr.push(td[k + 7], td[k + 14]);
 
-        } 
+      } else {
+        break;
+
       }
 
     } else if (player === whiteWord){
       if (td[k + 7].dataset.row === "rowBottom" || td[k + 7].dataset.col === "rightTop" || td[k + 7].className === "grid") {
         break;
 
-      } else if (td[k + 7].className === "black") {
+      } else if (td[k + 7].className === "black" && td[k + 14].className === "white") {
+        reverseArr.push(td[k + 7]);
 
-        if (td[k + 14].className === "white") {
-            reverseArr.push(td[k + 7]);
-     
-        }
+      } else if (td[k + 7].className === "black" && td[k + 14].className === "black" && td[k + 21].className === "white") {
+        reverseArr.push(td[k + 7], td[k + 14]);
+
+      } else {
+        break;
+        
       }
     }
   }
@@ -377,4 +432,6 @@ function error(classname, reverseArr) {
     }, 1000);
   }
 }  
+
+
 
