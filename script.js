@@ -1,40 +1,45 @@
 'use strict'
 
 const td = document.getElementsByTagName("td");
-console.log(td);
-
-const button = document.getElementById("button");
 
 const blackWord = "黒の番です⚫";
 const whiteWord = "白の番です⚪";
 
-button.addEventListener("click", function() {
+const passButton = document.getElementById("passButton");
+
+// パスの時の処理
+passButton.addEventListener("click", function() {
 
   const flag = document.getElementById("flag"); 
 
   if (flag.innerText === blackWord) {
-    flag.innerText = whiteWord
+    flag.innerText = whiteWord;
     
   } else {
-    flag.innerText = blackWord
+    flag.innerText = blackWord;
   }
   
 });
 
+// マスにクリックしたときの処理
 for (let i = 0; i < td.length; i++) {
 
   td[i].addEventListener("click", function() {
 
     const flag = document.getElementById("flag"); 
-    const player = flag.innerText
-    let cell = i;
-    let select = this.className;
+    const grid = document.getElementsByClassName("grid");
+    const player = flag.innerText;
 
-    if (select !== "grid") {
+    if (this.className !== "grid") {
       window.alert("そこのマスには置けません！😭");
     }
 
-    const reverseArr = putPiece(player, cell, select)
+    const reverseArr = putPiece(player, i);
+
+    if (!reverseArr[0]) {
+      window.alert("そこのマスには置けません！😭");
+    }
+
   
     for (const reverse of reverseArr) {
 
@@ -44,27 +49,41 @@ for (let i = 0; i < td.length; i++) {
         reverse.className = "black";
         this.innerText = "⚫";
         this.className = "black";
-        flag.innerText = whiteWord
+        flag.innerText = whiteWord;
 
       } else {
         reverse.innerText = "⚪";
         reverse.className = "white";
         this.innerText = "⚪";
         this.className = "white";
-        flag.innerText = blackWord   
+        flag.innerText = blackWord;   
 
       }
     }
+    // ゲーム終了時の処理
+      const black = document.getElementsByClassName("black");
+      const white = document.getElementsByClassName("white");
+
+      if (grid.length === 0 || white.length === 0 || black.length === 0) {
+        gameEnd();
+      }
+     
   });
+ 
 }
 
 
+/**
+ * @param {string} player
+ * @param {number} cell 
+ * @returns {array} ひっくり返すコマを配列で返す
+ */
 function putPiece(player, cell) {
   const reverseArr = [];
 
   // 右方向の確認
-  for (let j = cell; j < td.length; j++) {
-
+  for (let j = cell; j < td.length; j++) {;
+  
     if (player === blackWord) {
 
       if (td[j + 1].dataset.col === "rightTop") {
@@ -73,19 +92,22 @@ function putPiece(player, cell) {
       } else if (td[j + 1].className === "white") {
 
         if (td[j + 2].className === "black") {
-        reverseArr.push(td[j + 1]);
-        }
+          reverseArr.push(td[j + 1]);
+
+        } 
       }
+      
     } else if (player === whiteWord) {
+
       if (td[j + 1].dataset.col === "rightTop") {
         break;
 
       } else if (td[j + 1].className === "black") {
 
         if (td[j + 2].className === "white") {
-        reverseArr.push(td[j + 1]);
+          reverseArr.push(td[j + 1]);
 
-        }      
+        } 
       }
     }
   }
@@ -101,206 +123,244 @@ function putPiece(player, cell) {
       } else if (td[k - 1].className === "white") {
 
         if (td[k - 2].className === "black") {
-        reverseArr.push(td[k - 1]);
+          reverseArr.push(td[k - 1]);
+
         }
       }
-
+  
     } else if (player === whiteWord) {
+
       if (td[k - 1].dataset.row === "leftTop") {
         break;
 
       } else if (td[k - 1].className === "black") {
 
         if (td[k - 2].className === "white") {
-        reverseArr.push(td[k - 1]);
-        }      
+          reverseArr.push(td[k - 1]);
+
+        }
       }
     }
-  }
+  }  
 
    // 上方向の確認
-  for (let l = cell; l < td.length; l = l - 6) {
+  for (let j = cell; j < td.length; j = j - 6) {
 
     if (player === blackWord) {
 
-      if (td[l - 6].dataset.row === "rowTop"){
+      if (td[j - 6].dataset.row === "rowTop"){
         break;
 
-      } else if (td[l - 6].className === "white") {
+      } else if (td[j - 6].className === "white") {
 
-        if (td[l - 12].className === "black") {
-        reverseArr.push(td[l - 6]);
-        console.log(reverseArr);
+        if (td[j - 12].className === "black") {
+          reverseArr.push(td[j - 6]);
+
         }
       }
 
     } else if (player === whiteWord) {
-      if (td[l - 6].dataset.row === "rowTop") {
+      if (td[j - 6].dataset.row === "rowTop") {
         break;
 
-      } else if (td[l - 6].className === "black") {
+      } else if (td[j - 6].className === "black") {
 
-        if (td[l - 12].className === "white") {
-        reverseArr.push(td[l - 6]);
+        if (td[j - 12].className === "white") {
+          reverseArr.push(td[j - 6]);
+
         }      
       }
     }
   }
 
   // 下方向の確認
-  for (let n = cell; n < td.length; n = n + 6) {
+  for (let k = cell; k < td.length; k = k + 6) {
+    // console.log(k);
 
     if (player === blackWord) {
 
-      if (td[n + 6].dataset.row === "rowBottom") {
+      if (td[k + 6].dataset.row === "rowBottom") {
         break;
 
-      } else if (td[n + 6].className === "white") {
+      } else if (td[k + 6].className === "white") {
 
-        if (td[n + 12].className === "black") {
-        reverseArr.push(td[n + 6]);
+        if (td[k + 12].className === "black") {
+          reverseArr.push(td[k + 6]);
+
         }
       }
 
     } else if (player === whiteWord) {
-      if (td[n + 6].dataset.row === "rowBottom") {
+      if (td[k + 6].dataset.row === "rowBottom") {
         break;
 
-      } else if (td[n + 6].className === "black") {
+      } else if (td[k + 6].className === "black") {
 
-        if (td[n + 12].className === "white") {
-        reverseArr.push(td[n + 6]);
+        if (td[k + 12].className === "white") {
+          reverseArr.push(td[k + 6]);
+
         }      
       }
     }
   }
 
   // 左上方向の確認
-  for (let m = cell; m < td.length; m = m - 7) {
+  for (let j = cell; j < td.length; j = j - 7) {
 
     if (player === blackWord) {
 
-      if (td[m - 7].dataset.row === "rowTop" || td[m - 7].dataset.col === "leftTop") {
+      if (td[j - 7].dataset.row === "rowTop" || td[j - 7].dataset.col === "leftTop") {
         break;
 
-      } else if (td[m - 7].className === "white") {
+      } else if (td[j - 7].className === "white") {
 
-        if (td[m - 14].className === "black") {
-        reverseArr.push(td[m - 7]);
-        console.log(reverseArr);
+        if (td[j - 14].className === "black") {
+          reverseArr.push(td[j - 7]);
+
         }
       }
+
     } else if (player === whiteWord) {
-      if (td[m - 7].dataset.row === "rowTop" || td[m - 7].dataset.col === "leftTop") {
+      if (td[j - 7].dataset.row === "rowTop" || td[j - 7].dataset.col === "leftTop") {
         break;
 
-      } else if (td[m - 7].className === "black") {
+      } else if (td[j - 7].className === "black") {
 
-        if (td[m - 14].className === "white") {
-        reverseArr.push(td[m - 7]);
-        // console.log(reverseArr);
+        if (td[j - 14].className === "white") {
+          reverseArr.push(td[j - 7]);
+
         }      
       }
     }   
   }
 
   // 右上方向の確認
-  for (let m = cell; m < td.length; m = m - 5) {
+  for (let k = cell; k < td.length; k = k - 5) {
 
     if (player === blackWord) {
 
-      if (td[m - 5].dataset.row === "rowTop" || td[m - 5].dataset.col === "rightTop" ) {
+      if (td[k - 5].dataset.row === "rowTop" || td[k- 5].dataset.col === "rightTop" ) {
         break;
 
-      } else if (td[m - 5].className === "white") {
+      } else if (td[k - 5].className === "white") {
 
-        if (td[m - 10].className === "black") {
-        reverseArr.push(td[m - 5]);
-        // console.log(reverseArr);
+        if (td[k - 10].className === "black") {
+          reverseArr.push(td[k - 5]);
+
         }
       }
 
     } else if (player === whiteWord) {
-      if (td[m - 5].dataset.row === "rowTop" || td[m - 5].dataset.col === "rightTop") {
+      if (td[k - 5].dataset.row === "rowTop" || td[k - 5].dataset.col === "rightTop") {
         break;
 
-      } else if (td[m - 5].className === "black") {
+      } else if (td[k - 5].className === "black") {
 
-        if (td[m - 10].className === "white") {
-        reverseArr.push(td[m - 5]);
-        // console.log(reverseArr);
+        if (td[k - 10].className === "white") {
+          reverseArr.push(td[k - 5]);
+
         }      
       }
     }
   }
 
   // 左下方向の確認
-  for (let m = cell; m < td.length; m = m + 5) {
+  for (let j = cell; j < td.length; j = j + 5) {
 
     if (player === blackWord) {
 
-      if (td[m + 5].dataset.row === "rowBottom" || td[m + 5].dataset.col === "leftTop") {
+      if (td[j + 5].dataset.row === "rowBottom" || td[j + 5].dataset.col === "leftTop") {
         break;
 
-      } else if (td[m + 5].className === "white") {
+      } else if (td[j+ 5].className === "white") {
 
-        if (td[m + 10].className === "black") {
-        reverseArr.push(td[m + 5]);
-        console.log(reverseArr);
+        if (td[j + 10].className === "black") {
+          reverseArr.push(td[j + 5]);
+
         }
       }
 
     } else if (player === whiteWord) {
-      if (td[m + 5].dataset.row === "rowBottom" || td[m + 5].dataset.col === "leftTop") {
+      if (td[j + 5].dataset.row === "rowBottom" || td[j + 5].dataset.col === "leftTop") {
         break;
 
-      } else if (td[m + 5].className === "black") {
+      } else if (td[j + 5].className === "black") {
 
-        if (td[m + 10].className === "white") {
-        reverseArr.push(td[m + 5]);
-        // console.log(reverseArr);
+        if (td[j + 10].className === "white") {
+          reverseArr.push(td[j + 5]);
+    
         }      
       }
     }
   }
 
     // 右下方向の確認
-  for (let m = cell; m < td.length; m = m + 7) {
+  for (let k = cell; k < td.length; k = k + 7) {
 
     if (player === blackWord) {
 
-      if (td[m + 7].dataset.row === "rowBottom" || td[m + 7].dataset.col === "rightTop") {
+      if (td[k + 7].dataset.row === "rowBottom" || td[k + 7].dataset.col === "rightTop") {
         break;
 
-      } else if (td[m + 7].className === "white") {
+      } else if (td[k + 7].className === "white") {
 
-        if (td[m + 14].className === "black") {
-        reverseArr.push(td[m + 7]);
-        console.log(reverseArr);
+        if (td[k + 14].className === "black") {
+          reverseArr.push(td[k + 7]);
+
         } 
       }
 
     } else if (player === whiteWord){
-      if (td[m + 7].dataset.row === "rowBottom" || td[m + 7].dataset.col === "leftTop") {
+      if (td[k + 7].dataset.row === "rowBottom" || td[k + 7].dataset.col === "rightTop") {
         break;
 
-      } else if (td[m + 7].className === "black") {
+      } else if (td[k + 7].className === "black") {
 
-        if (td[m + 14].className === "white") {
-          reverseArr.push(td[m + 7]);
-        // console.log(reverseArr);
-        } else if (td[m + 21].className === "black") {
-
-          if (td[m + 21].className === "white")
-          reverseArr.push(td[m + 7], td[m + 14]);
+        if (td[k + 14].className === "white") {
+            reverseArr.push(td[k + 7]);
+     
         }
       }
     }
   }
 
-    if (!reverseArr[0]) {
-    window.alert("そこのマスには置けません！😭");
-    }
-  
   return reverseArr;
 }
+
+/**
+ * @returns {} 現在のコマの数に応じた、結果画面を表示する
+ */
+function gameEnd() {
+
+  const end = document.getElementById("end");
+  const black = document.getElementsByClassName("black");
+  const white = document.getElementsByClassName("white");
+  const blackScore = document.getElementById("blackScore");
+  const whiteScore = document.getElementById("whiteScore");
+  const result = document.getElementById("result");
+  
+  blackScore.innerText = black.length;
+  whiteScore.innerText = white.length;
+
+  if (black.length > white.length) {
+    result.innerText = "黒の勝利🎊";
+
+  } else if (black.length < white.length) {
+    result.innerText = "白の勝利🎊"
+
+  } else {
+    result.innerText = "引き分け😏"
+  }
+ 
+    end.style.visibility = "visible";
+  
+}
+
+const reloadButton = document.getElementById("reloadButton");
+
+reloadButton.addEventListener("click", function() {
+  location.reload();
+});
+
+const resultButton = document.getElementById("resultButton");
+resultButton.addEventListener("click", gameEnd);
