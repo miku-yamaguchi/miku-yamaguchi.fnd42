@@ -1,5 +1,6 @@
 body {
 	font-family: "ヒラギノ角ゴ ProN W3";
+	/* background: #91b6e7; */
 }
 
 header {
@@ -85,11 +86,13 @@ footer {
 	text-align: center;
 	background-color: rgb(56, 56, 50, 0.8);
 	color: #fff;
-	width: 300px;
+	width: 400px;
 	height: 300px;
 	position: absolute;
 	top: 200px;
-	left: 320px;
+	/* left: 430px; */
+	left: 750px;
+	margin: auto;
 }
 
 #reloadButton {
@@ -107,4 +110,19 @@ footer {
 
 #reloadButton:hover {
 	background-color: #a1a19e;
+}
+
+#error {
+	visibility: hidden;
+	font-size: 20px;
+	text-align: center;
+	background-color: rgba(196, 18, 32, 0.9);
+	color: #fff;
+	width: 200px;
+	height: 100px;
+	position: absolute;
+	top: 320px;
+	/* left: 530px; */
+	left: 850px;
+	margin: auto;
 }
