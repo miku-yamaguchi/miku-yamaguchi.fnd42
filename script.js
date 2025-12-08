@@ -33,12 +33,10 @@ for (let i = 0; i < td.length; i++) {
     const reverseArr = putPiece(player, i);
 
     error(td[i].className, reverseArr);
-    console.log(reverseArr)
   
     for (const reverse of reverseArr) {
 
       if (reverse.className === "white") {
-        console.log(reverse.className)
         reverse.innerText = "⚫";
         reverse.className = "black";
         this.innerText = "⚫";
@@ -46,7 +44,6 @@ for (let i = 0; i < td.length; i++) {
         flag.innerText = whiteWord;
 
       } else {
-        console.log(reverse.className)
         reverse.innerText = "⚪";
         reverse.className = "white";
         this.innerText = "⚪";
@@ -192,7 +189,6 @@ function putPiece(player, cell) {
 
   // 下方向の確認
   for (let k = cell; k < td.length; k = k + 6) {
-    // console.log(k);
 
     if (player === blackWord) {
 
@@ -432,6 +428,3 @@ function error(classname, reverseArr) {
     }, 1000);
   }
 }  
-
-
-
