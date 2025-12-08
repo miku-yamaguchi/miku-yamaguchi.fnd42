@@ -86,7 +86,7 @@ function putPiece(player, cell) {
   
     if (player === blackWord) {
 
-      if (td[j + 1].dataset.col === "rightTop") {
+      if (td[j + 1].dataset.col === "rightTop" || td[j + 1].className === "grid") {
         break;
 
       } else if (td[j + 1].className === "white") {
@@ -99,7 +99,7 @@ function putPiece(player, cell) {
       
     } else if (player === whiteWord) {
 
-      if (td[j + 1].dataset.col === "rightTop") {
+      if (td[j + 1].dataset.col === "rightTop" || td[j + 1].className === "grid") {
         break;
 
       } else if (td[j + 1].className === "black") {
@@ -117,7 +117,7 @@ function putPiece(player, cell) {
 
     if (player === blackWord) {
 
-      if (td[k - 1].dataset.col === "leftTop") {
+      if (td[k - 1].dataset.col === "leftTop" || td[k - 1].className === "grid") {
         break;
 
       } else if (td[k - 1].className === "white") {
@@ -130,7 +130,7 @@ function putPiece(player, cell) {
   
     } else if (player === whiteWord) {
 
-      if (td[k - 1].dataset.row === "leftTop") {
+      if (td[k - 1].dataset.row === "leftTop" || td[k - 1].className === "grid") {
         break;
 
       } else if (td[k - 1].className === "black") {
@@ -148,7 +148,7 @@ function putPiece(player, cell) {
 
     if (player === blackWord) {
 
-      if (td[j - 6].dataset.row === "rowTop"){
+      if (td[j - 6].dataset.row === "rowTop" || td[j - 6].className === "grid"){
         break;
 
       } else if (td[j - 6].className === "white") {
@@ -160,7 +160,7 @@ function putPiece(player, cell) {
       }
 
     } else if (player === whiteWord) {
-      if (td[j - 6].dataset.row === "rowTop") {
+      if (td[j - 6].dataset.row === "rowTop" || td[j - 6].className === "grid") {
         break;
 
       } else if (td[j - 6].className === "black") {
@@ -179,7 +179,7 @@ function putPiece(player, cell) {
 
     if (player === blackWord) {
 
-      if (td[k + 6].dataset.row === "rowBottom") {
+      if (td[k + 6].dataset.row === "rowBottom" || td[k + 6].className === "grid") {
         break;
 
       } else if (td[k + 6].className === "white") {
@@ -191,7 +191,7 @@ function putPiece(player, cell) {
       }
 
     } else if (player === whiteWord) {
-      if (td[k + 6].dataset.row === "rowBottom") {
+      if (td[k + 6].dataset.row === "rowBottom" || td[k + 6].className === "grid") {
         break;
 
       } else if (td[k + 6].className === "black") {
@@ -209,7 +209,7 @@ function putPiece(player, cell) {
 
     if (player === blackWord) {
 
-      if (td[j - 7].dataset.row === "rowTop" || td[j - 7].dataset.col === "leftTop") {
+      if (td[j - 7].dataset.row === "rowTop" || td[j - 7].dataset.col === "leftTop" || td[j - 7].className === "grid") {
         break;
 
       } else if (td[j - 7].className === "white") {
@@ -221,7 +221,7 @@ function putPiece(player, cell) {
       }
 
     } else if (player === whiteWord) {
-      if (td[j - 7].dataset.row === "rowTop" || td[j - 7].dataset.col === "leftTop") {
+      if (td[j - 7].dataset.row === "rowTop" || td[j - 7].dataset.col === "leftTop" || td[j - 7].className === "grid") {
         break;
 
       } else if (td[j - 7].className === "black") {
@@ -239,7 +239,7 @@ function putPiece(player, cell) {
 
     if (player === blackWord) {
 
-      if (td[k - 5].dataset.row === "rowTop" || td[k- 5].dataset.col === "rightTop" ) {
+      if (td[k - 5].dataset.row === "rowTop" || td[k- 5].dataset.col === "rightTop" || td[k - 5].className === "grid") {
         break;
 
       } else if (td[k - 5].className === "white") {
@@ -251,7 +251,7 @@ function putPiece(player, cell) {
       }
 
     } else if (player === whiteWord) {
-      if (td[k - 5].dataset.row === "rowTop" || td[k - 5].dataset.col === "rightTop") {
+      if (td[k - 5].dataset.row === "rowTop" || td[k - 5].dataset.col === "rightTop" || td[k - 5].className === "grid") {
         break;
 
       } else if (td[k - 5].className === "black") {
@@ -269,7 +269,7 @@ function putPiece(player, cell) {
 
     if (player === blackWord) {
 
-      if (td[j + 5].dataset.row === "rowBottom" || td[j + 5].dataset.col === "leftTop") {
+      if (td[j + 5].dataset.row === "rowBottom" || td[j + 5].dataset.col === "leftTop" || td[j + 5].className === "grid") {
         break;
 
       } else if (td[j+ 5].className === "white") {
@@ -281,7 +281,7 @@ function putPiece(player, cell) {
       }
 
     } else if (player === whiteWord) {
-      if (td[j + 5].dataset.row === "rowBottom" || td[j + 5].dataset.col === "leftTop") {
+      if (td[j + 5].dataset.row === "rowBottom" || td[j + 5].dataset.col === "leftTop" || td[j + 5].className === "grid") {
         break;
 
       } else if (td[j + 5].className === "black") {
@@ -299,7 +299,7 @@ function putPiece(player, cell) {
 
     if (player === blackWord) {
 
-      if (td[k + 7].dataset.row === "rowBottom" || td[k + 7].dataset.col === "rightTop") {
+      if (td[k + 7].dataset.row === "rowBottom" || td[k + 7].dataset.col === "rightTop" || td[k + 7].className === "grid") {
         break;
 
       } else if (td[k + 7].className === "white") {
@@ -311,7 +311,7 @@ function putPiece(player, cell) {
       }
 
     } else if (player === whiteWord){
-      if (td[k + 7].dataset.row === "rowBottom" || td[k + 7].dataset.col === "rightTop") {
+      if (td[k + 7].dataset.row === "rowBottom" || td[k + 7].dataset.col === "rightTop" || td[k + 7].className === "grid") {
         break;
 
       } else if (td[k + 7].className === "black") {
