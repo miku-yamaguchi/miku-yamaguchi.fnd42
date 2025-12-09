@@ -39,19 +39,26 @@ for (let i = 0; i < td.length; i++) {
       if (reverse.className === "white") {
         reverse.innerText = "⚫";
         reverse.className = "black";
-        this.innerText = "⚫";
-        this.className = "black";
-        flag.innerText = whiteWord;
 
       } else {
         reverse.innerText = "⚪";
         reverse.className = "white";
-        this.innerText = "⚪";
-        this.className = "white";
-        flag.innerText = blackWord;   
 
       }
+
     }
+
+    if (flag.innerText === blackWord) {
+      this.innerText = "⚫";
+      this.className = "black";
+      flag.innerText = whiteWord;
+        
+    } else if (flag.innerText = whiteWord) {
+      this.innerText = "⚪";
+      this.className = "white";
+      flag.innerText = blackWord;   
+    }
+
     // ゲーム終了時の処理
       const black = document.getElementsByClassName("black");
       const white = document.getElementsByClassName("white");
@@ -425,6 +432,6 @@ function error(classname, reverseArr) {
 
     setTimeout(function() {
       error.style.visibility = "hidden";
-    }, 1000);
+    }, 800);
   }
-}  
+} 
