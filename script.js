@@ -32,32 +32,37 @@ for (let i = 0; i < td.length; i++) {
 
     const reverseArr = putPiece(player, i);
 
-    error(td[i].className, reverseArr);
-  
-    for (const reverse of reverseArr) {
+    if (this.className !== "grid" || !reverseArr[0]) {
+      error();
 
-      if (reverse.className === "white") {
-        reverse.innerText = "⚫";
-        reverse.className = "black";
+    } else {
 
-      } else {
-        reverse.innerText = "⚪";
-        reverse.className = "white";
+      for (const reverse of reverseArr) {
+
+        if (reverse.className === "white") {
+          reverse.innerText = "⚫";
+          reverse.className = "black";
+
+        } else {
+          reverse.innerText = "⚪";
+          reverse.className = "white";
+
+        }
 
       }
 
+      if (flag.innerText === blackWord) {
+        this.innerText = "⚫";
+        this.className = "black";
+        flag.innerText = whiteWord;
+          
+      } else if (flag.innerText = whiteWord) {
+        this.innerText = "⚪";
+        this.className = "white";
+        flag.innerText = blackWord;   
+      }
     }
 
-    if (flag.innerText === blackWord) {
-      this.innerText = "⚫";
-      this.className = "black";
-      flag.innerText = whiteWord;
-        
-    } else if (flag.innerText = whiteWord) {
-      this.innerText = "⚪";
-      this.className = "white";
-      flag.innerText = blackWord;   
-    }
 
     // ゲーム終了時の処理
       const black = document.getElementsByClassName("black");
@@ -131,8 +136,6 @@ function putPiece(player, cell) {
 
       } else if (td[k - 1].className === "white" && td[k - 2].className === "white" && td[k - 3].className === "black") {
         reverseArr.push(td[k - 1], td[k - 2]);
-
-
 
       } else {
         break;
@@ -220,9 +223,12 @@ function putPiece(player, cell) {
 
       } else if (td[k + 6].className === "black" && td[k + 12].className === "white") {
         reverseArr.push(td[k + 6]);
+        console.log(reverseArr)
 
       } else if (td[k + 6].className === "black" && td[k + 12].className === "black" && td[k + 18].className === "white") {
         reverseArr.push(td[k + 6], td[k + 12]);
+        console.log(reverseArr)
+
 
       } else {
         break;
@@ -422,11 +428,9 @@ resultButton.addEventListener("click", gameEnd);
  * @param {array} reverseArr ひっくり返すコマを集めた配列  
  * @returns {} エラーメッセージを1秒表示する 
  */
-function error(classname, reverseArr) {
+function error() {
 
   const error = document.getElementById("error");
-
-  if (classname !== "grid" || !reverseArr[0]) {
     
     error.style.visibility = "visible";
 
@@ -434,4 +438,3 @@ function error(classname, reverseArr) {
       error.style.visibility = "hidden";
     }, 800);
   }
-} 
