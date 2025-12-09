@@ -98,6 +98,7 @@ function putPiece(player, cell) {
 
       } else if (td[j + 1].className === "white" && td[j + 2].className === "white" && td[j + 3].className === "black") {
         reverseArr.push(td[j + 1], td[j + 2]);
+        break;
 
 
       } else {
@@ -115,6 +116,7 @@ function putPiece(player, cell) {
 
       } else if (td[j + 1].className === "black" && td[j + 2].className === "black" && td[j + 3].className === "white") {
         reverseArr.push(td[j + 1], td[j + 2]);
+        break;
         
       } else {
         break;
@@ -136,6 +138,7 @@ function putPiece(player, cell) {
 
       } else if (td[k - 1].className === "white" && td[k - 2].className === "white" && td[k - 3].className === "black") {
         reverseArr.push(td[k - 1], td[k - 2]);
+        break;
 
       } else {
         break;
@@ -152,6 +155,7 @@ function putPiece(player, cell) {
 
       } else if (td[k - 1].className === "black" && td[k - 2].className === "black" && td[k - 3].className === "white") {
         reverseArr.push(td[k - 1], td[k - 2]);
+        break;
         
       } else {
         break;
@@ -169,10 +173,11 @@ function putPiece(player, cell) {
         break;
 
       } else if (td[j - 6].className === "white" && td[j - 12].className === "black") {
-          reverseArr.push(td[j - 6]);
+        reverseArr.push(td[j - 6]);
 
       } else if (td[j - 6].className === "white" && td[j - 12].className === "white" && td[j - 18].className === "black") {
-          reverseArr.push(td[j - 6], td[j - 12]);
+        reverseArr.push(td[j - 6], td[j - 12]);
+        break;
 
 
       } else {
@@ -188,7 +193,8 @@ function putPiece(player, cell) {
           reverseArr.push(td[j - 6]);
 
       } else if (td[j - 6].className === "black" && td[j - 12].className === "black" && td[j - 18].className === "white") {
-          reverseArr.push(td[j - 6], td[j - 12]);
+        reverseArr.push(td[j - 6], td[j - 12]);
+        break;
 
       } else {
         break;
@@ -210,6 +216,7 @@ function putPiece(player, cell) {
 
       } else if (td[k + 6].className === "white" && td[k + 12].className === "white" && td[k + 18].className === "black") {
         reverseArr.push(td[k + 6], td[k + 12]);
+        break;
 
 
       } else {
@@ -223,11 +230,10 @@ function putPiece(player, cell) {
 
       } else if (td[k + 6].className === "black" && td[k + 12].className === "white") {
         reverseArr.push(td[k + 6]);
-        console.log(reverseArr)
 
       } else if (td[k + 6].className === "black" && td[k + 12].className === "black" && td[k + 18].className === "white") {
         reverseArr.push(td[k + 6], td[k + 12]);
-        console.log(reverseArr)
+        break;
 
 
       } else {
@@ -250,6 +256,7 @@ function putPiece(player, cell) {
 
       } else if (td[j - 7].className === "white" && td[j - 14].className === "white" && td[j - 21].className === "black") {
         reverseArr.push(td[j - 7], td[j - 14]);
+        break;
 
       } else {
         break;
@@ -265,6 +272,7 @@ function putPiece(player, cell) {
 
       } else if (td[j - 7].className === "black" && td[j - 14].className === "black" && td[j - 21].className === "white") {
         reverseArr.push(td[j - 7], td[j - 14]);
+        break;
 
       } else {
         break;
@@ -286,6 +294,7 @@ function putPiece(player, cell) {
 
       } else if (td[k - 5].className === "white" && td[k - 10].className === "white" && td[k - 15].className === "black") {
         reverseArr.push(td[k - 5], td[k - 10]);
+        break;
 
       } else {
         break;
@@ -301,6 +310,7 @@ function putPiece(player, cell) {
 
       } else if (td[k - 5].className === "black" && td[k - 10].className === "black" && td[k - 15].className === "white") {
         reverseArr.push(td[k - 5], td[k - 10]);
+        break;
 
       } else {
         break;
@@ -322,6 +332,7 @@ function putPiece(player, cell) {
 
       } else if (td[j + 5].className === "white" && td[j + 10].className === "white" && td[j + 15].className === "black") {
         reverseArr.push(td[j + 5], td[j + 10]);
+        break;
 
       } else {
         break;
@@ -337,6 +348,7 @@ function putPiece(player, cell) {
 
      } else if (td[j + 5].className === "black" && td[j + 10].className === "black" && td[j + 15].className === "white") {
         reverseArr.push(td[j + 5], td[j + 10]);
+        break;
 
      } else {
       break;
@@ -358,6 +370,7 @@ function putPiece(player, cell) {
 
       } else if (td[k + 7].className === "white" && td[k + 14].className === "white" && td[k + 21].className === "black") {
         reverseArr.push(td[k + 7], td[k + 14]);
+        break;
 
       } else {
         break;
@@ -373,6 +386,7 @@ function putPiece(player, cell) {
 
       } else if (td[k + 7].className === "black" && td[k + 14].className === "black" && td[k + 21].className === "white") {
         reverseArr.push(td[k + 7], td[k + 14]);
+        break;
 
       } else {
         break;
